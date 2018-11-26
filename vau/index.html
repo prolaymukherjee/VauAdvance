@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue Js Bangla Tutorial</title>	
+	<style type="text/css">
+		.foo{
+			background: #ACE371;
+			text-align: center;
+			width: 960px;
+			margin: 44px auto;
+			min-height: 222px;
+		}
+
+		.bar-enter-active, .bar-leave-active {
+		  transition: margin-left .5s
+		}
+		.bar-enter, .bar-leave-to  {
+		  margin-left: -222px;
+		}
+
+		.main{
+			position: absolute;
+			width: 100%;
+
+		}
+
+		ul.menu{
+			list-style: none;
+			width: 960px;
+			margin: auto;
+			background: #1A6AA1;
+			color: #fff;
+		}
+
+		ul.menu li{
+			display: inline;
+		}
+
+		ul.menu li a{
+			color: #fff;
+			display: inline-block;
+			padding: 5px;
+			text-decoration: none;			
+		}
+		ul.menu li a.router-link-active, ul.menu li a:hover{
+			background: #BE4001;
+		}
+
+	</style>
+</head>
+<body>
+
+<div id="root">	
+	<ul class="menu">
+		<li> <a href="#home"> Home </a></li>
+		<li> <a href="#about">About </a> </li>
+		<li> <a href="#contact"> Contact </a></li>
+	</ul>
+	<br>
+	<ul class="menu">
+		<li> <router-link to="home"> Home </router-link> </li>
+		<li> <router-link to="about"> About </router-link> </li>
+		<li> <router-link to="contact"> Contact </router-link> </li>
+	</ul>
+
+	<div class="main">
+		<div class="foo">
+			<router-view>
+			</router-view>
+		</div>
+	</div>
+
+	
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+<script >
+
+	var Home = { 
+		template: `
+					<div>
+						<h1>Welcome </h1>
+						<p>
+							This is home page content
+						</p>	
+					</div>
+				`
+	};
+
+	var About = { 
+		template: `
+					<div>
+						<h1>About </h1>
+						<p>
+							This is about page content
+						</p>	
+					</div>
+				`
+	};
+
+	var Contact = { 
+		template: `
+					<div>
+						<h1>Contact </h1>
+						<p>
+							This is contact page content
+						</p>	
+					</div>
+				`
+	};
+
+	
+	var routes = [
+	  { path: '/home', component: Home },
+	  { path: '/about', component: About },
+	  { path: '/contact', component: Contact }
+
+	];
+
+	
+	var router = new VueRouter({
+	  routes: routes,
+	  mode: 'history',
+	  base: '/router-view/'
+	});
+
+	
+	var app = new Vue({
+	  router: router
+	}).$mount('#root');
+
+	
+	
+</script>
+
+</body>
+</html>
